@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/azure/aimcore</RepositoryUrl>
     <Version>0.0.4-alpha</Version>
     <NoWarn>NU5105</NoWarn>
+    <AssemblyName>AimTool.AzureIntegrationMigration.Runner</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
