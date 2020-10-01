@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>AimTool.AzureIntegrationMigration.Runner.Tests</AssemblyName>
+    <AssemblyName>Microsoft.AzureIntegrationMigration.Runner.Tests</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
