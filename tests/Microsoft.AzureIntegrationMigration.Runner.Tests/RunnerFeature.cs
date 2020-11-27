@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation.
+﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 using System;
 using System.Collections.Generic;
@@ -413,20 +413,10 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
                 });
         }
 
@@ -474,20 +464,10 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
                 });
         }
 
@@ -556,20 +536,10 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
 
                     // Verify events fired
                     beforeStage.Should().BeTrue();
@@ -644,20 +614,10 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
 
                     // Verify events not fired
                     beforeStage.Should().BeFalse();
@@ -666,12 +626,7 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     afterStageRunner.Should().BeFalse();
 
                     // Verify trace message fired (6 of each event, for each stage runner and stage)
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Debug),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("skipping raising event")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Exactly(24));
+                    _mockLogger.VerifyLog(l => l.LogDebug("*skipping raising event*"), Times.Exactly(24));
                 });
         }
 
@@ -717,28 +672,13 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify warning log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Warning),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("configuration doesn't define any stages to run")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogWarning("*configuration doesn't define any stages to run*"));
 
                     // Verify completed log message never output
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Never);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"), Times.Never);
                 });
         }
 
@@ -785,28 +725,13 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify warning log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Warning),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("configuration doesn't define any stage runners to run")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogWarning("*configuration doesn't define any stage runners to run*"));
 
                     // Verify completed log message never output
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Never);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"), Times.Never);
                 });
         }
 
@@ -857,28 +782,13 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify warning log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Warning),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("configuration defines 6 stage runners, but is set to skip the execution")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogWarning("*configuration defines 6 stage runners, but is set to skip the execution*"));
 
                     // Verify completed log message never output
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Never);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"), Times.Never);
                 });
         }
 
@@ -935,28 +845,13 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().NotBeNull().And.BeOfType<OperationCanceledException>();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify warning log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Warning),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Runner has been cancelled by the caller")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogWarning("*Runner has been cancelled by the caller*"));
 
                     // Verify completed log message never output
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Never);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"), Times.Never);
                 });
         }
 
@@ -1013,28 +908,13 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().NotBeNull().And.BeOfType<OperationCanceledException>();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify warning log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Warning),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Runner has been cancelled by the caller")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogWarning("*Runner has been cancelled by the caller*"));
 
                     // Verify completed log message never output
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Never);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"), Times.Never);
                 });
         }
 
@@ -1080,41 +960,22 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify skip log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Skipping stage 'Report'")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*Skipping stage 'Report'*"));
 
                     // Verify execute log message output 5 times
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) =>
-                            v.ToString().Contains("Running stage 'Discover'") ||
-                            v.ToString().Contains("Running stage 'Parse'") ||
-                            v.ToString().Contains("Running stage 'Analyze'") ||
-                            v.ToString().Contains("Running stage 'Convert'") ||
-                            v.ToString().Contains("Running stage 'Verify'")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Exactly(5));
+                    _mockLogger.VerifyLog(l => l.LogInformation(
+                        It.Is<string>(v =>
+                            v.Contains("Running stage 'Discover'") ||
+                            v.Contains("Running stage 'Parse'") ||
+                            v.Contains("Running stage 'Analyze'") ||
+                            v.Contains("Running stage 'Convert'") ||
+                            v.Contains("Running stage 'Verify'")), Times.Exactly(5)));
 
-                    // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    // Verify completed log message never output
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
                 });
         }
 
@@ -1165,36 +1026,16 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify skip log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Skipping stage runner")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*Skipping stage runner*"));
 
                     // Verify execute log message output 5 times
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Running stage runner")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Exactly(5));
+                    _mockLogger.VerifyLog(l => l.LogInformation("*Running stage runner*"), Times.Exactly(5));
 
-                    // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    // Verify completed log message never output
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
                 });
         }
 
@@ -1247,36 +1088,16 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify skip log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Skipping stage runner")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*Skipping stage runner*"));
 
                     // Verify execute log message output 5 times
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Running stage runner")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Exactly(5));
+                    _mockLogger.VerifyLog(l => l.LogInformation("*Running stage runner*"), Times.Exactly(5));
 
-                    // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    // Verify completed log message never output
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
                 });
         }
 
@@ -1323,36 +1144,16 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify skip log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Skipping stage runner")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*Skipping stage runner*"));
 
                     // Verify execute log message output 5 times
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Running stage runner")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Exactly(5));
+                    _mockLogger.VerifyLog(l => l.LogInformation("*Running stage runner*"), Times.Exactly(5));
 
-                    // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    // Verify completed log message never output
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
                 });
         }
 
@@ -1402,28 +1203,13 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().NotBeNull().And.BeOfType<Engine.RunnerException>().Which.Message.Should().Contain("aborting runner");
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify abort log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Error),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("aborting runner")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogError("*aborting runner*"));
 
                     // Verify completed log message never output
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Never);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"), Times.Never);
                 });
         }
 
@@ -1473,28 +1259,13 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().NotBeNull().And.BeOfType<Engine.RunnerException>().Which.Message.Should().Contain("aborting runner immediately");
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
                     // Verify abort log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Error),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("aborting runner immediately")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogError("*aborting runner immediately*"));
 
                     // Verify completed log message never output
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Never);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"), Times.Never);
                 });
         }
 
@@ -1545,20 +1316,10 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
                     e.Should().BeNull();
 
                     // Verify starting log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("starting")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    _mockLogger.VerifyLog(l => l.LogInformation("*starting*"));
 
-                    // Verify completed log message output once
-                    _mockLogger.Verify(l => l.Log(
-                        It.Is<LogLevel>(l => l == LogLevel.Information),
-                        It.IsAny<EventId>(),
-                        It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("completed")),
-                        It.IsAny<Exception>(),
-                        It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), Times.Once);
+                    // Verify completed log message never output
+                    _mockLogger.VerifyLog(l => l.LogInformation("*completed*"));
                 });
 
             "And the execution state can be serialized to JSON successfully"
