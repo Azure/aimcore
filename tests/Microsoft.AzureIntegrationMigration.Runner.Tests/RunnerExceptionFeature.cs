@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation.
+﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 using System;
 using System.IO;
@@ -136,6 +136,7 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
         /// <param name="e">The runner exception, if any.</param>
         [Scenario]
         [Trait(TestConstants.TraitCategory, TestConstants.CategoryUnitTest)]
+#pragma warning disable SYSLIB0011 // Type or member is obsolete
         public void ConstructWithSerializationSuccess(RunnerException rex, IFormatter formatter, MemoryStream stream, Exception e)
         {
             "Given the runner exception"
@@ -163,6 +164,7 @@ namespace Microsoft.AzureIntegrationMigration.Runner.Tests
             "And the exception should have our custom message"
                 .x(() => rex.Message.Should().Be("an error message"));
         }
+#pragma warning restore SYSLIB0011 // Type or member is obsolete
 
         #endregion
     }
